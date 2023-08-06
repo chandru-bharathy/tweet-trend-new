@@ -6,9 +6,9 @@ pipeline {
     }
 
     stages {
-        stage('clone-code') {
+        stage('build') {
             steps {
-                git branch: 'main', credentialsId: 'jenkins-slave-maven', url: 'https://github.com/chandru-bharathy/tweet-trend-new.git'
+                sh mvn clean deploy
             }
         }
     }
