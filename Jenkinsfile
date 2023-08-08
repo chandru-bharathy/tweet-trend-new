@@ -23,7 +23,6 @@ pipeline {
         }
 
         stage('SonarQube analysis') {
-        environment {
             environment {
                 scannerHome = tool 'chandru-sonar-scanner'
             }
