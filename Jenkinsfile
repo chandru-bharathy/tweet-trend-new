@@ -16,4 +16,17 @@ environment {
             }
         }
     }
+
+  
+        stage('SonarQube analysis') {
+        environment{
+            scannerHome = tool 'chandru-sonar-scanner'
+        }
+            steps{
+                withSonarQubeEnv('chandru-sonarqube-server') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+           }
+        }
+
 }
