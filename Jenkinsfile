@@ -1,4 +1,4 @@
-//def registry = 'https://chandrujfrog.jfrog.io'
+def registry = 'https://chandrujfrog.jfrog.io'
 pipeline {
     agent {
         node {
@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-        PATH = "/opt/apache-maven-3.9.2/bin:$PATH"
+        PATH = "/opt/apache-maven-3.9.4/bin:$PATH"
     }
 
     stages {
@@ -48,7 +48,7 @@ pipeline {
             }
         }
 
-/*        stage("Jar Publish") {
+        stage("Jar Publish") {
             steps {
                 script {
                         echo '<--------------- Jar Publish Started --------------->'
@@ -72,6 +72,6 @@ pipeline {
                 
                 }
             }   
-        } */  
+        } 
     }
 }
