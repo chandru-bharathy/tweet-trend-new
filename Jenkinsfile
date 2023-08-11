@@ -60,11 +60,11 @@ pipeline {
                         def uploadSpec = """{
                             "files": [
                                 {
-                                "pattern": "jarstaging/(*)",
-                                "target": "libs-release-local/{1}",
-                                "flat": "false",
-                                "props" : "${properties}",
-                                "exclusions": [ "*.sha1", "*.md5"]
+                                    "pattern": "jarstaging/(*)",
+                                    "target": "libs-release-local/{1}",
+                                    "flat": "false",
+                                    "props" : "${properties}",
+                                    "exclusions": ["*.sha1", "*.md5"]
                                 }
                             ]
                         }"""
@@ -94,6 +94,16 @@ pipeline {
                         app.push()
                     }    
                     echo '<--------------- Docker Publish Ended --------------->'  
+                }
+            }
+        }
+
+         stage (" Deploy kubernates"){
+            steps {
+                script {
+                    echo '<--------------- kubernates deployment Started --------------->'  
+                    sh './deploy.sh'   
+                    echo '<--------------- kubernates deployment Ended --------------->'  
                 }
             }
         }
