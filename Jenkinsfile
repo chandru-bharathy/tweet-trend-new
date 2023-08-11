@@ -11,6 +11,7 @@ pipeline {
 
     environment {
         PATH = "/opt/apache-maven-3.9.4/bin:$PATH"
+        PATH = "/usr/local/aws-cli/v2/current/bin:$PATH"
     }
 
     stages {
@@ -102,6 +103,7 @@ pipeline {
             steps {
                 script {
                     echo '<--------------- kubernates deployment Started --------------->'  
+                    sh 'aws eks update-kubeconfig --region us-east-1 --name chandru-eks-01'
                     sh './deploy.sh'   
                     echo '<--------------- kubernates deployment Ended. --------------->'  
                 }
