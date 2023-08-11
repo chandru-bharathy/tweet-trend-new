@@ -105,7 +105,7 @@ pipeline {
                     echo '<--------------- kubernates deployment Started --------------->'  
                     sh 'aws eks update-kubeconfig --region us-east-1 --name chandru-eks-01'
                     sh './deploy.sh'   
-                    echo '<--------------- kubernates deployment Ended. --------------->'  
+                    echo '<--------------- kubernates deployment Ended --------------->'  
                 }
             }
         }
