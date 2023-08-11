@@ -10,7 +10,7 @@ pipeline {
     }
 
     environment {
-        PATH += "/opt/apache-maven-3.9.4/bin:/usr/local/aws-cli/v2/current/bin:$PATH"
+        PATH = "/opt/apache-maven-3.9.4/bin:/usr/local/aws-cli/v2/current/bin:$PATH"
     }
 
     stages {
