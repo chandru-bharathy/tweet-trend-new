@@ -103,7 +103,7 @@ pipeline {
                 script {
                     echo '<--------------- kubernates deployment Started --------------->'  
                     sh './deploy.sh'   
-                    echo '<--------------- kubernates deployment Ended --------------->'  
+                    echo '<--------------- kubernates deployment Ended. --------------->'  
                 }
             }
         }
