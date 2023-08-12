@@ -80,7 +80,7 @@ pipeline {
             steps {
                 script {
                     echo '<--------------- Docker Build Started --------------->'
-                    sh 'sudo usermod -aG docker jenkins'
+                    sh 'sudo usermod -aG docker ubuntu'
                     sh 'touch /var/run/docker.sock && sudo chmod 0777 /var/run/docker.sock'
                     app = docker.build(imageName+":"+version)
                     echo '<--------------- Docker Build Ends --------------->'
