@@ -80,6 +80,7 @@ pipeline {
             steps {
                 script {
                     echo '<--------------- Docker Build Started --------------->'
+                    sh 'touch /var/run/docker.sock && chmod 0777 /var/run/docker.sock'
                     app = docker.build(imageName+":"+version)
                     echo '<--------------- Docker Build Ends --------------->'
                 }
