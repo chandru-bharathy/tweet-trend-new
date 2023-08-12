@@ -105,7 +105,7 @@ pipeline {
                 script {
                     echo '<--------------- kubernates deployment Started --------------->'  
                     sh 'aws eks update-kubeconfig --region us-east-1 --name chandru-eks-01'
-                    sh 'helm install ttrend-0.1.0.tgz'   
+                    sh 'helm install ttrend ttrend-0.1.0.tgz'   
                     echo '<--------------- kubernates deployment Ended. --------------->'  
                 }
             }
