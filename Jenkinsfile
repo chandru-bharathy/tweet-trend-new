@@ -110,7 +110,7 @@ pipeline {
                     sh 'helm package ttrend'
                     def helmChartExists = sh(script: "helm list | grep -q \"^${HELM_CHART_NAME}\\s\"", returnStatus: true)
                     if (helmChartExists == 0) {
-                        sh "helm uninstall ${HELM_CHART_NAME} ttrend-0.1.0.tgz"
+                        sh "helm uninstall ${HELM_CHART_NAME} "
                         sh "helm install ${HELM_CHART_NAME} ttrend-0.1.0.tgz"
                     } else {
                         
