@@ -1,6 +1,7 @@
 def registry = 'https://chandrujfrog.jfrog.io'
 def imageName = 'chandrujfrog.jfrog.io/chandru-docker-local/ttrend'
 def version   = '2.1.2'
+def HELM_CHART_NAME = "ttrend"
 
 pipeline {
     agent {
@@ -105,6 +106,12 @@ pipeline {
                 script {
                     echo '<--------------- kubernates deployment Started --------------->'  
                     sh 'aws eks update-kubeconfig --region us-east-1 --name chandru-eks-01'
+                    def helmChartExists = sh(script: "helm repo list | grep -q \"^${HELM_CHART_NAME}\\s\"", returnStatus: true)
+                    if (helmChartExists == 0) {
+                        sh "helm upgrade ${HELM_CHART_NAME} ttrend-0.1.0.tgz"
+                    } else {
+                        sh "helm install ${HELM_CHART_NAME} ttrend-0.1.0.tgz"
+                    }
                     sh 'helm install ttrend ttrend-0.1.0.tgz'   
                     echo '<--------------- kubernates deployment Ended. --------------->'  
                 }
