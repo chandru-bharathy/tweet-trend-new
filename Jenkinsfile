@@ -105,14 +105,15 @@ pipeline {
             steps {
                 script {
                     echo '<--------------- kubernates deployment Started --------------->'  
-                    
+                
                     sh 'aws eks update-kubeconfig --region us-east-1 --name chandru-eks-01'
+                    sh 'helm package ttrend'
                     def helmChartExists = sh(script: "helm list | grep -q \"^${HELM_CHART_NAME}\\s\"", returnStatus: true)
                     if (helmChartExists == 0) {
-                        sh 'helm package ttrend'
+                        
                         sh "helm upgrade ${HELM_CHART_NAME} ttrend-0.1.0.tgz"
                     } else {
-                        sh 'helm package ttrend'
+                        
                         sh "helm install ${HELM_CHART_NAME} ttrend-0.1.0.tgz"
                     } 
                     sh 'docker system prune -af'
