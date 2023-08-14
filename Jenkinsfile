@@ -94,7 +94,8 @@ pipeline {
                 script {
                     echo '<--------------- Docker Publish Started --------------->'  
                     docker.withRegistry(registry, 'jfrog'){
-                        app.push()
+                    app.push()
+                    sh 'docker system prune -a'
                     }    
                     echo '<--------------- Docker Publish Ended --------------->'  
                 }
@@ -106,7 +107,7 @@ pipeline {
                 script {
                     echo '<--------------- kubernates deployment Started --------------->'  
                     sh 'aws eks update-kubeconfig --region us-east-1 --name chandru-eks-01'
-                    def helmChartExists = sh(script: "helm repo list | grep -q \"^${HELM_CHART_NAME}\\s\"", returnStatus: true)
+                    def helmChartExists = sh(script: "helm list | grep -q \"^${HELM_CHART_NAME}\\s\"", returnStatus: true)
                     if (helmChartExists == 0) {
                         sh "helm upgrade ${HELM_CHART_NAME} ttrend-0.1.0.tgz"
                     } else {
