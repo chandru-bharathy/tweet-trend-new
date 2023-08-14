@@ -95,7 +95,6 @@ pipeline {
                     echo '<--------------- Docker Publish Started --------------->'  
                     docker.withRegistry(registry, 'jfrog'){
                     app.push()
-                    sh 'docker system prune -a'
                     }    
                     echo '<--------------- Docker Publish Ended --------------->'  
                 }
@@ -113,7 +112,7 @@ pipeline {
                     } else {
                         sh "helm install ${HELM_CHART_NAME} ttrend-0.1.0.tgz"
                     } 
-                    sh 'docker system prune -a'
+                    sh 'docker system prune -af'
                     echo '<--------------- kubernates deployment Ended. --------------->'  
                 }
             }
