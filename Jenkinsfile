@@ -113,6 +113,7 @@ pipeline {
                     } else {
                         sh "helm install ${HELM_CHART_NAME} ttrend-0.1.0.tgz"
                     } 
+                    sh 'docker system prune -a'
                     echo '<--------------- kubernates deployment Ended. --------------->'  
                 }
             }
