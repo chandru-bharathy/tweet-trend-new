@@ -111,8 +111,7 @@ pipeline {
                         sh "helm upgrade ${HELM_CHART_NAME} ttrend-0.1.0.tgz"
                     } else {
                         sh "helm install ${HELM_CHART_NAME} ttrend-0.1.0.tgz"
-                    }
-                    sh 'helm install ttrend ttrend-0.1.0.tgz'   
+                    } 
                     echo '<--------------- kubernates deployment Ended. --------------->'  
                 }
             }
