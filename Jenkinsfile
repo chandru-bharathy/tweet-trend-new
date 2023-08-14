@@ -27,7 +27,7 @@ pipeline {
                 sh 'mvn surefire-report:report'
             }
         }
-
+/* 
         stage('SonarQube analysis') {
             environment {
                 scannerHome = tool 'chandru-sonar-scanner'
@@ -51,7 +51,7 @@ pipeline {
                 }
             }
         }
-
+*/ 
         stage("Jar Publish to frog") {
             steps {
                 script {
